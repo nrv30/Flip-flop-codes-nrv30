@@ -1,5 +1,4 @@
 function Rules ($content, $char) { 
-    $strongest_password = ''
     $sum = 0
     $content | ForEach-Object {
         $password = $_ + $char
@@ -40,14 +39,7 @@ function Rules ($content, $char) {
             $score *= 3
         }
         
-        $strength = $score * $password.length
-        if ($strength -gt $max) {
-                $max = $strength
-                $strongest_password = $password
-        }
-        
-
-        $sum += $strength
+        $sum += $score * $password.length
     }
     
     return $sum
